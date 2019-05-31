@@ -1,4 +1,4 @@
-# Dotnet ASP NET CORE 2.1 and Automapper
+# ASP NET CORE 2.1 and Automapper
 ASP NET CORE APIs + Mongo DB + Automapper
 
 ### Requirements
@@ -10,7 +10,7 @@ ASP NET CORE APIs + Mongo DB + Automapper
 
 ### Usage
 
-+ Start MongoDB
++ Start MongoDB & APIs
 ```
 cd devops
 docker-compose up
