@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using DotnetMapper.Models;
 using DotnetMapper.Services;
+using StackExchange.Profiling;
 
 namespace DotnetMapper.Controllers
 {
@@ -25,17 +26,25 @@ namespace DotnetMapper.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Book>>> Get()
         {
-            return new ObjectResult(await _bookService.GetBooks());
+            object books = null;
+            using (MiniProfiler.Current.Step("Get list"))
+            {
+                books = await _bookService.GetBooks();
+            }
+            return new ObjectResult(books);
         }
 
         // GET api/Books/1
         [HttpGet("{id}")]
         public async Task<ActionResult<Book>> Get(string id)
         {
-            var book = await _bookService.GetBook(id);
-            if (book == null)
-                return new NotFoundResult();
-
+            object book;
+            using (MiniProfiler.Current.Step("Get Item"))
+            {
+                book = await _bookService.GetBook(id);
+                if (book == null)
+                    return new NotFoundResult();
+            }
             return new OkObjectResult(book);
         }
 

@@ -16,6 +16,7 @@
     <PackageReference Include="AutoMapper" Version="8.1.0" />
     <PackageReference Include="SyrianBallaS.AutoMapper.Extensions.Microsoft.DependencyInjection.Signed" Version="3.2.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.8.1" />
+    <PackageReference Include="MiniProfiler.AspNetCore.Mvc" Version="4.0.165" />
+    <PackageReference Include="MiniProfiler.Providers.MongoDB" Version="4.0.165" />
   </ItemGroup>
-
 </Project>
