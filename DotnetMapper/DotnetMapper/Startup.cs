@@ -37,23 +37,6 @@ namespace DotnetMapper
                 // (Optional) Control which SQL formatter to use, InlineFormatter is the default
                 options.SqlFormatter = new StackExchange.Profiling.SqlFormatters.InlineFormatter();
 
-                // (Optional) To control authorization, you can use the Func<HttpRequest, bool> options:
-                // (default is everyone can access profilers)
-                // options.ResultsAuthorize = request => MyGetUserFunction(request).CanSeeMiniProfiler;
-                // options.ResultsListAuthorize = request => MyGetUserFunction(request).CanSeeMiniProfiler;
-
-                // (Optional)  To control which requests are profiled, use the Func<HttpRequest, bool> option:
-                // (default is everything should be profiled)
-                // options.ShouldProfile = request => MyShouldThisBeProfiledFunction(request);
-
-                // (Optional) Profiles are stored under a user ID, function to get it:
-                // (default is null, since above methods don't use it by default)
-                // options.UserIdProvider = request => MyGetUserIdFunction(request);
-
-                // (Optional) Swap out the entire profiler provider, if you want
-                // (default handles async and works fine for almost all appliations)
-                // options.ProfilerProvider = new MyProfilerProvider();
-
                 // (Optional) You can disable "Connection Open()", "Connection Close()" (and async variant) tracking.
                 // (defaults to true, and connection opening/closing is tracked)
                 options.TrackConnectionOpenClose = true;
