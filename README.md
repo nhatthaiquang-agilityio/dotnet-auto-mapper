@@ -1,12 +1,13 @@
 # ASP NET CORE 2.1 and Automapper
-ASP NET CORE APIs + Mongo DB + Automapper
+ASP NET CORE APIs + Mongo DB + Automapper + MiniProfiling
+
 
 ### Requirements
++ Docker & Docker Compose
 + ASP NET CORE 2.1
 + Automapper
 + MongoDB
-+ Docker & Docker Compose
-
++ MiniProfiling: monitor the application
 
 ### Usage
 
@@ -15,3 +16,9 @@ ASP NET CORE APIs + Mongo DB + Automapper
 cd devops
 docker-compose up
 ```
+
++ Monitor your application http://localhost:5000/profiler/results
+
+### Reference
++ [Automapper](http://anthonygiretti.com/2018/12/19/common-features-in-asp-net-core-2-2-webapi-mapping)
++ [Profiling](http://anthonygiretti.com/2018/12/16/common-features-in-asp-net-core-2-2-webapi-profiling/)
