@@ -14,6 +14,8 @@ namespace Testing
             {
                 services.AddScoped<BookService>();
             });
+
+            SeedData.InitData();
         }
        
     }

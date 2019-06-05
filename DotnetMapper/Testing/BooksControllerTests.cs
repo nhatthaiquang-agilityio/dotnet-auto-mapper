@@ -17,8 +17,22 @@ namespace Testing
         public BooksControllerTests(CustomWebApplicationFactory<Startup> factory)
         {
             _client = factory.CreateClient();
+        }
 
-            //TODO: need to seed data for testing
+        [Fact]
+        public async Task TestGetListBooks()
+        {
+            var httpResponse = await _client.GetAsync("http://localhost/api/books");
+
+            // Must be successful.
+            httpResponse.EnsureSuccessStatusCode();
+
+            // Deserialize and examine results.
+            var stringResponse = await httpResponse.Content.ReadAsStringAsync();
+            var books = JsonConvert.DeserializeObject<IEnumerable<Book>>(stringResponse);
+
+            Assert.Contains(books, p => p.Author == "Stephen Ken");
+            Assert.Contains(books, p => p.BookName == "Basic C#");
         }
 
         [Fact]
@@ -50,36 +64,40 @@ namespace Testing
         }
 
         [Fact]
-        public async Task TestGetListBooks()
-        {
-            var httpResponse = await _client.GetAsync("http://localhost/api/books");
-
-            // Must be successful.
-            httpResponse.EnsureSuccessStatusCode();
-
-            // Deserialize and examine results.
-            var stringResponse = await httpResponse.Content.ReadAsStringAsync();
-            var books = JsonConvert.DeserializeObject<IEnumerable<Book>>(stringResponse);
-
-            Assert.Contains(books, p => p.Author == "Rick Johnson");
-            Assert.Contains(books, p => p.BookName == "Advance C#");
-        }
-
-        [Fact]
         public async Task TestGetBook()
         {
-            var httpResponse = await _client.GetAsync("http://localhost/api/books/5cefa9cfa8af8905f4457ba1");
+            // create book model
+            var bookModel = new BookViewModel
+            {
+                Author = "David Lahm",
+                Price = (decimal)40.45,
+                Category = "Program",
+                BookName = "React"
+            };
+
+            HttpContent content = new StringContent(
+                JsonConvert.SerializeObject(bookModel), Encoding.UTF8, "application/json");
+            var response = await _client.PostAsync(
+                "http://localhost/api/books", content);
+
+            response.EnsureSuccessStatusCode();
+
+            // Deserialize results.
+            var stringResponse = await response.Content.ReadAsStringAsync();
+            var book = JsonConvert.DeserializeObject<Book>(stringResponse);
+
+
+            var httpResponse = await _client.GetAsync("http://localhost/api/books/" + book.Id);
 
             // Must be successful.
             httpResponse.EnsureSuccessStatusCode();
 
-            // Deserialize and examine results.
-            var stringResponse = await httpResponse.Content.ReadAsStringAsync();
-            var book = JsonConvert.DeserializeObject<Book>(stringResponse);
+            // Deserialize results.
+            var contentResponse = await httpResponse.Content.ReadAsStringAsync();
+            var bookObj = JsonConvert.DeserializeObject<Book>(contentResponse);
 
-            Assert.Equal("Rick Johnson", book.Author);
-            Assert.Equal(48.45, (double)book.Price);
-            Assert.Equal("5cefa9cfa8af8905f4457ba1", book.Id);
+            Assert.Equal("David Lahm", bookObj.Author);
+            Assert.Equal(40.45, (double)bookObj.Price);
         } 
     }
 }

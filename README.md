@@ -21,15 +21,6 @@ docker-compose up
 
 #### Testing
 -------------
-TODO: Need to create Seed Data for testing(Getting List Books and Book Detail)
-```
-Id = 5cefa9cfa8af8905f4457ba1
-Author = "Rick Johnson",
-Price = (decimal)48.45,
-Category = "Computer",
-BookName = "Advance C#"
-```
-
 + Start MongoDB
 ```
 cd devops
