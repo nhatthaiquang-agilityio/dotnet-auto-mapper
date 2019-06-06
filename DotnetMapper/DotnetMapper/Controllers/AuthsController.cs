@@ -6,7 +6,7 @@ namespace DotnetMapper.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthsController : Controller
+    public class AuthsController : ControllerBase
     {
         private readonly IMapper _mapper;
 

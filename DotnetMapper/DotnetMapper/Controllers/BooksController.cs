@@ -11,7 +11,7 @@ namespace DotnetMapper.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BooksController : Controller
+    public class BooksController : ControllerBase
     {
         private readonly BookService _bookService;
         private readonly IMapper _mapper;
