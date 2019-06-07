@@ -16,8 +16,7 @@ namespace DotnetMapper.Services
         public BookService(IConfiguration config)
         {
             string connectionString = (string.IsNullOrEmpty(Environment.GetEnvironmentVariable("MONGO_HOST")))?
-                config.GetConnectionString("BookstoreDb"):
-                connectionString = config["MongoDB:Container"];
+                config.GetConnectionString("BookstoreDb"): config["MongoDB:Container"];
 
             var client = new MongoClient(connectionString);
             var database = client.GetDatabase(config["MongoDB:Database"]);
