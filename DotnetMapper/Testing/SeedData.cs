@@ -32,7 +32,7 @@ namespace Testing
             var newBooks = new List<Book> { book1, book2 };
 
             var client = new MongoClient("mongodb://root:example@localhost:27017");
-            IMongoDatabase db = client.GetDatabase("BookDB");
+            IMongoDatabase db = client.GetDatabase("Test_BookDB");
             var collection = db.GetCollection<Book>("Books");
 
             collection.InsertMany(newBooks);
