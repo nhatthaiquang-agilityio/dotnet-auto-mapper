@@ -11,7 +11,7 @@ namespace Testing
 {
     // Integration Test
     public class BooksControllerTests : IClassFixture<CustomWebApplicationFactory<Startup>>
-    {
+        {
         private readonly HttpClient _client;
 
         public BooksControllerTests(CustomWebApplicationFactory<Startup> factory)
@@ -47,13 +47,12 @@ namespace Testing
             };
 
             HttpContent content = new StringContent(
-                JsonConvert.SerializeObject(bookModel), 
+                JsonConvert.SerializeObject(bookModel),
                 Encoding.UTF8, "application/json");
-            var httpResponse = await _client.PostAsync(
-                "http://localhost/api/books", content);
+            var httpResponse = await _client.PostAsync("http://localhost/api/books", content);
 
             httpResponse.EnsureSuccessStatusCode();
-       
+
             // Deserialize and examine results.
             var stringResponse = await httpResponse.Content.ReadAsStringAsync();
             var book = JsonConvert.DeserializeObject<Book>(stringResponse);
@@ -77,8 +76,7 @@ namespace Testing
 
             HttpContent content = new StringContent(
                 JsonConvert.SerializeObject(bookModel), Encoding.UTF8, "application/json");
-            var response = await _client.PostAsync(
-                "http://localhost/api/books", content);
+            var response = await _client.PostAsync("http://localhost/api/books", content);
 
             response.EnsureSuccessStatusCode();
 
@@ -98,6 +96,6 @@ namespace Testing
 
             Assert.Equal("David Lahm", bookObj.Author);
             Assert.Equal(40.45, (double)bookObj.Price);
-        } 
+        }
     }
 }

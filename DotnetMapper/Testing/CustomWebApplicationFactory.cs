@@ -9,8 +9,7 @@ namespace Testing
 {
     public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<DotnetMapper.Startup>
     {
-        private static readonly Dictionary<string, string> arrayDict =
-            new Dictionary<string, string>
+        protected static readonly Dictionary<string, string> arrayDict = new Dictionary<string, string>
             {
                 {"MongoDB:Database", "Test_BookDB"},
 
